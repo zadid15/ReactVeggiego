@@ -1,62 +1,10 @@
+import Footer from "../components/Footer";
+import Navbar from "../components/Navbar";
+
 export default function Browse() {
     return (
         <>
-            {/* Navbar */}
-            <nav className="bg-[#C8C8C8]/50 p-4 shadow-md fixed top-0 left-0 right-0 z-10 backdrop-blur-md">
-                <div className="container mx-auto flex justify-between items-center">
-                    <a href="#" className="text-white text-2xl font-bold">
-                        Vegg<span className="text-green-400">iego</span>.
-                    </a>
-                    {/* Menu */}
-                    <ul className="hidden md:flex space-x-6 text-white font-medium">
-                        <li>
-                            <a href="#" className="hover:text-green-400">
-                                Home
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#" className="hover:text-green-400">
-                                List Product
-                            </a>
-                        </li>
-                    </ul>
-                    {/* Tombol Register */}
-                    <a
-                        href="#"
-                        className="hidden md:inline-block px-4 py-2 bg-white text-green-500 font-semibold rounded-lg hover:bg-green-500"
-                    >
-                        Register
-                    </a>
-                    {/* Hamburger Menu (Mobile) */}
-                    <button
-                        className="md:hidden text-black focus:outline-none"
-                        id="menu-toggle"
-                    >
-                        ☰
-                    </button>
-                </div>
-                {/* Dropdown Menu (Mobile) */}
-                <ul
-                    className="hidden flex-col bg-[#C8C8C8] text-white space-y-2 p-4 md:hidden"
-                    id="nav-links"
-                >
-                    <li>
-                        <a href="#" className="block py-2 hover:text-green-400">
-                            Home
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#" className="block py-2 hover:text-green-400">
-                            List Product
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#" className="block py-2 hover:text-green-400">
-                            Register
-                        </a>
-                    </li>
-                </ul>
-            </nav>
+           <Navbar />
             {/* Hero Section */}
             <section className="bg-[url('/assets/images/hero/hero.png')] bg-no-repeat bg-cover bg-center min-h-screen w-full">
                 <div className="absolute inset-0 flex items-center justify-center text-center px-4">
@@ -319,30 +267,7 @@ export default function Browse() {
                     </a>
                 </div>
             </section>
-            {/* Footer */}
-            <footer className="bg-gray-900 text-white py-10">
-                <div className="container mx-auto text-center">
-                    <h3 className="text-2xl font-bold">
-                        Vegg<span className="text-green-400">iego</span>.
-                    </h3>
-                    <p className="mt-2 text-gray-400">Belanja sayur segar tanpa ribet.</p>
-                    <div className="flex justify-center space-x-6 mt-4">
-                        <a href="#" className="hover:text-green-400">
-                            Instagram
-                        </a>
-                        <a href="#" className="hover:text-green-400">
-                            Facebook
-                        </a>
-                        <a href="#" className="hover:text-green-400">
-                            WhatsApp
-                        </a>
-                    </div>
-                    <p className="mt-6 text-gray-500 text-sm">
-                        © 2025 Veggiego. All rights reserved.
-                    </p>
-                </div>
-            </footer>
+            <Footer />
         </>
-
     )
 }
