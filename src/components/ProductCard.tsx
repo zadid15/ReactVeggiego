@@ -1,15 +1,18 @@
-import type { Product } from "../types/type";
+import { useNavigate } from "react-router-dom";
+import { Product } from "../types/type";
 
-interface ProductCardProps {
-    product: Product;
-    baseURL: string;
-}
+export default function ProductCard({ product }: { product: Product }) {
+    const navigate = useNavigate();
 
-export default function ProductCard({ product, baseURL }: ProductCardProps) {
+    console.log(product); // Debugging
+
     return (
-        <div className="bg-white p-4 rounded-xl shadow-md">
+        <div
+            className="bg-white p-4 rounded-xl shadow-md cursor-pointer hover:shadow-lg transition"
+            onClick={() => navigate(`/product/${product.slug}`)}
+        >
             <img
-                src={product.image ? `${baseURL}/${product.image}` : "default.jpg"}
+                src={product.image ? `http://127.0.0.1:8001/storage/${product.image}` : "default.jpg"}
                 alt={product.name}
                 className="w-full h-40 object-cover rounded-lg border-3 border-gray-300"
             />

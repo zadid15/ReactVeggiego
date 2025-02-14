@@ -7,6 +7,7 @@ export interface Product {
     unit: string;
     description: string;
     image: string;
+    slug: string;
 }
 
 interface Category {

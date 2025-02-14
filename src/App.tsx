@@ -3,6 +3,7 @@ import Browse from "./pages/Browse"
 import Product from "./pages/Product"
 import Register from "./pages/auth/Register"
 import Login from "./pages/auth/Login"
+import ProductDetail from "./pages/ProductDetail"
 
 function App() {
 
@@ -13,6 +14,7 @@ function App() {
         <Route path="/register" element={<Register />} />
         <Route path="/" element={<Browse />} />
         <Route path="/list-product" element={<Product />} />
+        <Route path="/product/:slug" element={<ProductDetail />} />
       </Routes>
     </BrowserRouter>
   )
