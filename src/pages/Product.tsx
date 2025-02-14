@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import Footer from "../components/Footer";
 import Navbar from "../components/Navbar";
+import ProductCard from "../components/ProductCard";
 import apiClient from "../service/apiService";
 import type { Product } from "../types/type";
 
@@ -57,23 +58,12 @@ export default function Product() {
                 {!loading && !error && products.length > 0 && (
                     <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
                         {products.map((product) => (
-                            <div className="bg-white p-4 rounded-xl shadow-md" key={product.id}>
-                                <img
-                                    src={product.image ? `${baseURL}/${product.image}` : "default.jpg"}
-                                    alt={product.name}
-                                    className="w-full h-40 object-cover rounded-lg"
-                                />
-                                <h3 className="text-lg font-semibold mt-2">{product.name}</h3>
-                                <p className="text-gray-600">Rp {product.price.toLocaleString()}</p>
-                                <button className="mt-4 w-full bg-green-500 text-white py-2 rounded-lg hover:bg-green-600">
-                                    Beli
-                                </button>
-                            </div>
+                            <ProductCard key={product.id} product={product} baseURL={baseURL} />
                         ))}
                     </div>
                 )}
             </section>
-            
+
             <Footer />
         </>
     );
