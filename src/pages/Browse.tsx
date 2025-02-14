@@ -4,7 +4,7 @@ import Navbar from "../components/Navbar";
 export default function Browse() {
     return (
         <>
-           <Navbar />
+            <Navbar />
             {/* Hero Section */}
             <section className="bg-[url('/assets/images/hero/hero.png')] bg-no-repeat bg-cover bg-center min-h-screen w-full">
                 <div className="absolute inset-0 flex items-center justify-center text-center px-4">
@@ -66,10 +66,10 @@ export default function Browse() {
             </section>
             {/* Cara Kerja Section */}
             <section className="py-20 bg-green-500">
-                <div className="container mx-auto text-center">
+                <div className="container mx-auto text-center px-4">
                     <h2 className="text-3xl md:text-4xl font-bold text-white">
                         Cara{" "}
-                        <span className="text-green-400 drop-shadow-[0_2px_2px_rgba(0,0,0,0.5)]">
+                        <span className="text-green-300 drop-shadow-[0_2px_2px_rgba(0,0,0,0.5)]">
                             Kerja
                         </span>{" "}
                         Kami
@@ -77,39 +77,43 @@ export default function Browse() {
                     <p className="text-white mt-4 text-lg">
                         Belanja sayur segar hanya dalam beberapa langkah mudah.
                     </p>
-                    <div className="mt-12 flex flex-col md:flex-row items-center justify-center space-y-8 md:space-y-0 md:space-x-12">
-                        {/* Step 1 */}
+                    <div className="mt-12 grid grid-cols-1 md:grid-cols-4 gap-8">
+                        {/* Step 1 - Login/Register */}
                         <div className="flex flex-col items-center text-center">
-                            <div className="w-20 h-20 bg-white text-black flex items-center justify-center rounded-full text-2xl">
+                            <div className="w-16 h-16 bg-green-300 text-black flex items-center justify-center rounded-full text-2xl font-bold shadow-lg">
                                 1
                             </div>
-                            <h3 className="mt-4 text-xl text-white font-semibold">
-                                Pilih Sayuran
-                            </h3>
+                            <h3 className="mt-4 text-xl text-white font-semibold">Login / Register</h3>
+                            <p className="text-gray-200 max-w-xs">
+                                Daftar atau masuk ke akun Anda untuk mulai berbelanja sayuran segar.
+                            </p>
+                        </div>
+                        {/* Step 2 - Pilih Sayuran */}
+                        <div className="flex flex-col items-center text-center">
+                            <div className="w-16 h-16 bg-green-300 text-black flex items-center justify-center rounded-full text-2xl font-bold shadow-lg">
+                                2
+                            </div>
+                            <h3 className="mt-4 text-xl text-white font-semibold">Pilih Sayuran</h3>
                             <p className="text-gray-200 max-w-xs">
                                 Pilih sayur segar yang ingin Anda beli dari katalog kami.
                             </p>
                         </div>
-                        {/* Step 2 */}
+                        {/* Step 3 - Lakukan Pemesanan */}
                         <div className="flex flex-col items-center text-center">
-                            <div className="w-20 h-20 bg-white text-black flex items-center justify-center rounded-full text-2xl">
-                                2
+                            <div className="w-16 h-16 bg-green-300 text-black flex items-center justify-center rounded-full text-2xl font-bold shadow-lg">
+                                3
                             </div>
-                            <h3 className="mt-4 text-xl text-white font-semibold">
-                                Lakukan Pemesanan
-                            </h3>
+                            <h3 className="mt-4 text-xl text-white font-semibold">Lakukan Pemesanan</h3>
                             <p className="text-gray-200 max-w-xs">
                                 Masukkan pesanan Anda dan pilih metode pembayaran.
                             </p>
                         </div>
-                        {/* Step 3 */}
+                        {/* Step 4 - Terima Pesanan */}
                         <div className="flex flex-col items-center text-center">
-                            <div className="w-20 h-20 bg-white text-black flex items-center justify-center rounded-full text-2xl">
-                                3
+                            <div className="w-16 h-16 bg-green-300 text-black flex items-center justify-center rounded-full text-2xl font-bold shadow-lg">
+                                4
                             </div>
-                            <h3 className="mt-4 text-xl text-white font-semibold">
-                                Terima Pesanan
-                            </h3>
+                            <h3 className="mt-4 text-xl text-white font-semibold">Terima Pesanan</h3>
                             <p className="text-gray-200 max-w-xs">
                                 Sayur segar langsung dikirim ke rumah Anda dalam 24 jam.
                             </p>
@@ -117,6 +121,7 @@ export default function Browse() {
                     </div>
                 </div>
             </section>
+
             {/* Testimoni Pelanggan */}
             <section className="py-20 bg-white">
                 <div className="container mx-auto">

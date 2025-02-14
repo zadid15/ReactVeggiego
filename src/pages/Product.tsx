@@ -23,18 +23,6 @@ export default function Product() {
             });
     }, []);
 
-    if (loading) {
-        return <p className="text-center text-gray-600">Memuat produk...</p>;
-    }
-
-    if (error) {
-        return <p className="text-center text-red-500">Error loading data: {error}</p>;
-    }
-
-    if (products.length === 0) {
-        return <p className="text-center text-gray-600">Produk tidak ditemukan</p>;
-    }
-
     return (
         <>
             <Navbar />
@@ -45,25 +33,47 @@ export default function Product() {
                     Temukan sayuran segar terbaik untuk Anda!
                 </p>
             </section>
+
             {/* Produk Grid */}
             <section className="container mx-auto px-4 py-10 min-h-screen">
-                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-                    {products.map((product) => (
-                        <div className="bg-white p-4 rounded-xl shadow-md" key={product.id}>
-                            <img
-                                src={product.image ? `${baseURL}/${product.image}` : "default.jpg"}
-                                alt={product.name}
-                                className="w-full h-40 object-cover rounded-lg"
-                            />
-                            <h3 className="text-lg font-semibold mt-2">{product.name}</h3>
-                            <p className="text-gray-600">Rp {product.price.toLocaleString()}</p>
-                            <button className="mt-4 w-full bg-green-500 text-white py-2 rounded-lg hover:bg-green-600">
-                                Beli
-                            </button>
-                        </div>
-                    ))}
-                </div>
+                {loading && (
+                    <p className="text-center text-gray-600 text-lg animate-pulse">
+                        Memuat produk...
+                    </p>
+                )}
+
+                {error && (
+                    <p className="text-center text-red-500 text-lg">
+                        Error loading data: {error}
+                    </p>
+                )}
+
+                {!loading && products.length === 0 && (
+                    <p className="text-center text-gray-600 text-lg">
+                        Produk tidak ditemukan
+                    </p>
+                )}
+
+                {!loading && !error && products.length > 0 && (
+                    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+                        {products.map((product) => (
+                            <div className="bg-white p-4 rounded-xl shadow-md" key={product.id}>
+                                <img
+                                    src={product.image ? `${baseURL}/${product.image}` : "default.jpg"}
+                                    alt={product.name}
+                                    className="w-full h-40 object-cover rounded-lg"
+                                />
+                                <h3 className="text-lg font-semibold mt-2">{product.name}</h3>
+                                <p className="text-gray-600">Rp {product.price.toLocaleString()}</p>
+                                <button className="mt-4 w-full bg-green-500 text-white py-2 rounded-lg hover:bg-green-600">
+                                    Beli
+                                </button>
+                            </div>
+                        ))}
+                    </div>
+                )}
             </section>
+            
             <Footer />
         </>
     );
