@@ -16,8 +16,8 @@ export default function Navbar() {
                             <span className="absolute left-0 -bottom-1 w-full h-0.5 bg-green-600 scale-x-0 group-hover:scale-x-100 transition-transform duration-800 origin-left"></span>
                         </li>
                         <li className="relative group">
-                            <a href="/list-product" className="hover:text-green-600 transition duration-500">
-                                List Product
+                            <a href="/list-products" className="hover:text-green-600 transition duration-500">
+                                List Products
                             </a>
                             <span className="absolute left-0 -bottom-1 w-full h-0.5 bg-green-600 scale-x-0 group-hover:scale-x-100 transition-transform duration-800 origin-left"></span>
                         </li>
@@ -44,8 +44,8 @@ export default function Navbar() {
                         </a>
                     </li>
                     <li>
-                        <a href="/list-product" className="block py-2 hover:text-green-400 transition duration-300">
-                            List Product
+                        <a href="/list-products" className="block py-2 hover:text-green-400 transition duration-300">
+                            List Products
                         </a>
                     </li>
                     <li>

@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import apiClient from "../service/apiService";
 import type { Product } from "../types/type";
 import Navbar from "../components/Navbar";
@@ -31,7 +31,13 @@ export default function ProductDetail() {
     return (
         <>
             <Navbar />
-            <section className="container mx-auto px-4 py-10 min-h-screen mt-[120px]">
+            <section className="container mx-auto px-4 py-10 min-h-screen mt-[80px]">
+                {/* Button Kembali */}
+                <Link to="/list-products">
+                    <button className="mb-5 bg-green-500 text-white py-2 px-4 rounded-lg text-lg font-semibold hover:bg-green-600 transition duration-300">
+                        Kembali
+                    </button>
+                </Link>
                 <div className="bg-white shadow-lg rounded-xl p-6">
                     {/* Nama Produk */}
                     <h1 className="text-4xl font-bold text-gray-800">{product.name}</h1>
