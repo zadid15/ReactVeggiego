@@ -1,15 +1,18 @@
 import { useEffect, useState } from "react";
-import { Link, useParams } from "react-router-dom";
+import { Link, useParams, useNavigate } from "react-router-dom";
 import apiClient from "../service/apiService";
 import type { Product } from "../types/type";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
+import { useAuth } from "../pages/auth/AuthContext";
 
 export default function ProductDetail() {
     const { slug } = useParams();
     const [product, setProduct] = useState<Product | null>(null);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState<string | null>(null);
+    const navigate = useNavigate();
+    const { user } = useAuth();
 
     useEffect(() => {
         apiClient
@@ -24,15 +27,35 @@ export default function ProductDetail() {
             });
     }, [slug]);
 
-    if (loading) return <p className="text-center text-gray-600">Memuat produk...</p>;
-    if (error) return <p className="text-center text-red-500">Error: {error}</p>;
-    if (!product) return <p className="text-center text-gray-600">Produk tidak ditemukan</p>;
+    const handleBuyNow = () => {
+        if (!product) return;
+
+        // Jika user belum login, redirect ke halaman login
+        if (!user) {
+            alert("Silakan login terlebih dahulu untuk membeli produk.");
+            navigate("/login");
+            return;
+        }
+
+        // Simpan produk yang dipilih ke localStorage untuk diakses di halaman Order
+        localStorage.setItem("selectedProduct", JSON.stringify(product));
+
+        // Redirect ke halaman Order untuk konfirmasi pembelian
+        navigate("/order");
+    };
+
+    if (loading)
+        return <p className="text-center text-gray-600">Memuat produk...</p>;
+    if (error)
+        return <p className="text-center text-red-500">Error: {error}</p>;
+    if (!product)
+        return <p className="text-center text-gray-600">Produk tidak ditemukan</p>;
 
     return (
         <>
             <Navbar />
             <section className="container mx-auto px-4 py-10 min-h-screen mt-[80px]">
-                {/* Button Kembali */}
+                {/* Tombol Kembali */}
                 <Link to="/list-products">
                     <button className="mb-5 bg-green-500 text-white py-2 px-4 rounded-lg text-lg font-semibold hover:bg-green-600 transition duration-300">
                         Kembali
@@ -45,7 +68,11 @@ export default function ProductDetail() {
                     {/* Gambar Full-Width */}
                     <div className="mt-4">
                         <img
-                            src={product.image ? `http://127.0.0.1:8001/storage/${product.image}` : "default.jpg"}
+                            src={
+                                product.image
+                                    ? `http://127.0.0.1:8001/storage/${product.image}`
+                                    : "default.jpg"
+                            }
                             alt={product.name}
                             className="w-full border-3 border-gray-300 max-h-[400px] object-cover rounded-lg"
                         />
@@ -63,7 +90,10 @@ export default function ProductDetail() {
                     </div>
 
                     {/* Tombol Beli */}
-                    <button className="mt-6 bg-green-500 text-white py-3 px-6 rounded-lg text-lg font-semibold hover:bg-green-600 transition duration-300">
+                    <button
+                        onClick={handleBuyNow}
+                        className="mt-6 bg-green-500 text-white py-3 px-6 rounded-lg text-lg font-semibold hover:bg-green-600 transition duration-300"
+                    >
                         Beli Sekarang
                     </button>
                 </div>

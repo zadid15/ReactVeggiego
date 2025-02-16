@@ -1,13 +1,12 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
+import { useAuth } from "./AuthContext";
 
 export default function Login() {
-    const navigate = useNavigate(); // Untuk redirect setelah login sukses
-    const [form, setForm] = useState({
-        email: "",
-        password: "",
-    });
+    const navigate = useNavigate();
+    const { login } = useAuth(); // Ambil fungsi login dari context
+    const [form, setForm] = useState({ email: "", password: "" });
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState<string | null>(null);
 
@@ -19,22 +18,18 @@ export default function Login() {
         e.preventDefault();
         setLoading(true);
         setError(null);
-
+    
         try {
             const response = await axios.post("http://127.0.0.1:8001/api/login", form);
-            const token = response.data.token;
+            const { token, user } = response.data;
+    
+            // Simpan auth di context
+            login(user, token);
 
-            // Simpan token ke localStorage
-            localStorage.setItem("token", token);
-
-            // Redirect ke dashboard atau home
+            // Redirect ke halaman utama
             navigate("/");
         } catch (err: any) {
-            if (err.response) {
-                setError(err.response.data.message || "Login gagal, periksa kembali kredensial Anda.");
-            } else {
-                setError("Terjadi kesalahan, coba lagi.");
-            }
+            setError(err.response?.data?.message || "Login gagal, coba lagi.");
         } finally {
             setLoading(false);
         }
